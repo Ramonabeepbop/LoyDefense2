@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>LOY - Protect the River</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main class="game">
+
+    <!-- START SCREEN -->
+    <section id="startScreen" class="screen active">
+        <div class="start-content">
+
+            <img
+                src="images/loy-logo.png"
+                class="logo"
+                alt="Loy"
+                onerror="this.style.display='none'"
+            >
+
+            <h1>
+                PROTECT<br>
+                THE RIVER
+            </h1>
+
+            <p class="intro">
+                Protect the river from rubbish,
+                pollution and careless water use.
+            </p>
+
+            <button id="playButton" class="main-button">
+                PLAY
+            </button>
+
+            <button id="tutorialButton" class="secondary-button">
+                HOW TO PLAY
+            </button>
+
+        </div>
+    </section>
+
+
+    <!-- CHALLENGE SCREEN -->
+    <section id="challengeScreen" class="screen">
+
+        <div class="challenge-content">
+
+            <button id="challengeBack" class="back-button">
+                BACK
+            </button>
+
+            <h1>
+                CHOOSE YOUR<br>
+                CHALLENGE
+            </h1>
+
+            <p class="screen-description">
+                Each river faces a different problem.
+            </p>
+
+            <div id="levelList" class="level-list"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TUTORIAL SCREEN -->
+    <section id="tutorialScreen" class="screen">
+
+        <div class="tutorial-content">
+
+            <button id="tutorialBack" class="back-button">
+                BACK
+            </button>
+
+            <h1>HOW TO PLAY</h1>
+
+            <div class="tutorial-card">
+                <span class="tutorial-number">1</span>
+
+                <div>
+                    <h2>WAIT FOR THE WAVE</h2>
+                    <p>
+                        Every wave begins with a short countdown.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <span class="tutorial-number">2</span>
+
+                <div>
+                    <h2>DRAG YOUR DEFENCES</h2>
+                    <p>
+                        Drag a defence from the bottom onto
+                        a placement spot beside the river.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <span class="tutorial-number">3</span>
+
+                <div>
+                    <h2>WATCH THE RANGE</h2>
+                    <p>
+                        Hold a tower to see how far it can reach.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <span class="tutorial-number">4</span>
+
+                <div>
+                    <h2>STOP THE RUBBISH</h2>
+                    <p>
+                        Pollution travels down the river.
+                        Stop it before it reaches the end.
+                    </p>
+                </div>
+            </div>
+
+            <div class="tutorial-card">
+                <span class="tutorial-number">5</span>
+
+                <div>
+                    <h2>PROTECT YOUR RIVER</h2>
+                    <p>
+                        If too much pollution leaks through,
+                        the stage ends.
+                    </p>
+                </div>
+            </div>
+
+            <button id="tutorialPlay" class="main-button">
+                PLAY TUTORIAL
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- GAME SCREEN -->
+    <section id="gameScreen" class="screen game-screen">
+
+        <!-- HEADER -->
+        <header class="game-header">
+
+            <button id="gameBack" class="game-back-button">
+                BACK
+            </button>
+
+            <div class="header-title">
+                <span id="levelNumber">
+                    LEVEL 1
+                </span>
+
+                <strong id="levelName">
+                    RIVER SOURCE
+                </strong>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <span>POINTS</span>
+                    <strong id="points">120</strong>
+                </div>
+
+                <div class="stat">
+                    <span>RIVER</span>
+                    <strong>
+                        <span id="health">100</span>
+                    </strong>
+                </div>
+
+                <div class="stat">
+                    <span>TOWERS</span>
+                    <strong>
+                        <span id="towerCount">0</span>/<span id="towerLimit">10</span>
+                    </strong>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- STAGE PROGRESS -->
+        <div class="stage-progress">
+
+            <div class="progress-top">
+
+                <strong id="stageProgressText">
+                    WAVE 1 OF 5
+                </strong>
+
+                <span id="leakText">
+                    LEAKS 0 / 10
+                </span>
+
+            </div>
+
+            <div class="progress-track">
+                <div
+                    id="stageProgressFill"
+                    class="progress-fill"
+                ></div>
+            </div>
+
+            <div class="wave-dots" id="waveDots">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+
+        <!-- WAVE BAR -->
+        <div class="wave-bar">
+
+            <div class="wave-info">
+                <span id="waveLabel">
+                    WAVE 1
+                </span>
+
+                <span id="waveStatus">
+                    GET READY
+                </span>
+            </div>
+
+            <div
+                id="countdown"
+                class="countdown"
+            >
+                5
+            </div>
+
+        </div>
+
+
+        <!-- MAP -->
+        <div id="gameMap" class="game-map">
+
+            <div class="grass-image"></div>
+
+            <div class="river"></div>
+
+            <div
+                id="branchOne"
+                class="river-branch branch-one"
+            ></div>
+
+            <div
+                id="branchTwo"
+                class="river-branch branch-two"
+            ></div>
+
+            <div
+                id="rangePreview"
+                class="range-preview hidden"
+            ></div>
+
+        </div>
+
+
+        <!-- TOWER PANEL -->
+        <div class="tower-panel">
+
+            <div class="tower-heading">
+                <span>DEFENCES</span>
+                <small>DRAG TO PLACE</small>
+            </div>
+
+            <div class="tower-list">
+
+                <!-- RECYCLING -->
+                <div
+                    class="tower-card"
+                    draggable="true"
+                    data-type="recycle"
+                >
+
+                    <div class="tower-image">
+                        <img
+                            src="images/recycling-bin.png"
+                            alt="Recycling bin"
+                        >
+                    </div>
+
+                    <strong>RECYCLING</strong>
+                    <span>35 PTS</span>
+
+                </div>
+
+
+                <!-- FILTER -->
+                <div
+                    class="tower-card"
+                    draggable="true"
+                    data-type="filter"
+                >
+
+                    <div class="tower-image">
+                        <img
+                            src="images/water-filter.png"
+                            alt="Water filter"
+                        >
+                    </div>
+
+                    <strong>FILTER</strong>
+                    <span>55 PTS</span>
+
+                </div>
+
+
+                <!-- GARBAGE NET -->
+                <div class="tower-card" data-type="garbageNet">
+                    <div class="tower-image">
+                        <img src="images/garbage-net.png" alt="Garbage Net">
+                    </div>
+                
+                    <strong>GARBAGE NET</strong>
+                    <span>65 POINTS</span>
+                </div>
+
+                
+
+
+                <!-- SIGN -->
+                <div
+                    class="tower-card"
+                    draggable="true"
+                    data-type="sign"
+                >
+
+                    <div class="tower-image">
+                        <img
+                            src="images/education-sign.png"
+                            alt="Educational sign"
+                        >
+                    </div>
+
+                    <strong>SIGN</strong>
+                    <span>45 PTS</span>
+
+                </div>
+
+
+                <!-- CLEAN UP -->
+                <div
+                    class="tower-card"
+                    draggable="true"
+                    data-type="cleanup"
+                >
+
+                    <div class="tower-image">
+                        <img
+                            src="images/cleanup-team.png"
+                            alt="Community clean-up"
+                        >
+                    </div>
+
+                    <strong>CLEAN UP</strong>
+                    <span>90 PTS</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- END MESSAGE -->
+        <div
+            id="gameMessage"
+            class="game-message hidden"
+        >
+
+            <div class="message-box">
+
+                <h2 id="messageTitle">
+                    RIVER PROTECTED
+                </h2>
+
+                <p id="messageText">
+                    You protected the river.
+                </p>
+
+                <button
+                    id="nextStageButton"
+                    class="main-button"
+                >
+                    NEXT STAGE
+                </button>
+
+                <button
+                    id="restartButton"
+                    class="secondary-button"
+                >
+                    REPLAY
+                </button>
+
+                <button
+                    id="messageBackButton"
+                    class="secondary-button"
+                >
+                    BACK TO CHALLENGES
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
