@@ -1,0 +1,838 @@
+/* =====================================================
+   LOY - PROTECT THE RIVER
+   MOBILE GAME UI
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border: 0;
+}
+
+.game {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: #fecc58;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.screen.active {
+    display: block;
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+#startScreen {
+    background: #fecc58;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+#startScreen.active {
+    display: flex;
+}
+
+.start-content {
+    width: 100%;
+    text-align: center;
+}
+
+.logo {
+    width: min(180px, 55vw);
+    max-height: 100px;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+.start-content h1 {
+    font-size: clamp(38px, 12vw, 58px);
+    line-height: .88;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.intro {
+    max-width: 330px;
+    margin: 0 auto 30px;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #222;
+}
+
+.main-button,
+.secondary-button {
+    width: 100%;
+    min-height: 54px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: transform .15s ease;
+}
+
+.main-button {
+    background: #111;
+    color: #fecc58;
+}
+
+.secondary-button {
+    background: transparent;
+    border: 2px solid #111;
+    color: #111;
+    margin-top: 10px;
+}
+
+.main-button:active,
+.secondary-button:active {
+    transform: scale(.97);
+}
+
+
+/* =====================================================
+   CHALLENGE
+===================================================== */
+
+#challengeScreen,
+#tutorialScreen {
+    background: #fecc58;
+    padding: 24px 20px 40px;
+}
+
+.challenge-content,
+.tutorial-content {
+    width: 100%;
+}
+
+.back-button,
+.game-back-button {
+    background: transparent;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #111;
+}
+
+.back-button {
+    margin-bottom: 30px;
+}
+
+.challenge-content h1,
+.tutorial-content h1 {
+    font-size: clamp(34px, 10vw, 50px);
+    line-height: .9;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+}
+
+.screen-description {
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.level-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.level-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #111;
+    color: #fecc58;
+    border-radius: 14px;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.level-card:active {
+    transform: scale(.98);
+}
+
+.level-number {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: #fecc58;
+    color: #111;
+    border-radius: 10px;
+    font-weight: 900;
+}
+
+.level-info h2 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.level-info p {
+    font-size: 11px;
+    line-height: 1.35;
+    opacity: .8;
+}
+
+
+/* =====================================================
+   TUTORIAL
+===================================================== */
+
+.tutorial-card {
+    display: flex;
+    gap: 13px;
+    background: rgba(255,255,255,.25);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
+
+.tutorial-number {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #111;
+    color: #fecc58;
+    font-weight: 900;
+}
+
+.tutorial-card h2 {
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.tutorial-card p {
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   GAME
+===================================================== */
+
+.game-screen {
+    min-height: 100vh;
+    height: 100vh;
+    background: #fecc58;
+    display: none;
+    flex-direction: column;
+}
+
+.game-screen.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.game-header {
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: 45px 1fr auto;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #111;
+    color: #fecc58;
+}
+
+.game-back-button {
+    color: #fecc58;
+    font-size: 9px;
+}
+
+.header-title {
+    min-width: 0;
+}
+
+.header-title span {
+    display: block;
+    font-size: 8px;
+    opacity: .7;
+    letter-spacing: 1px;
+}
+
+.header-title strong {
+    display: block;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stats {
+    display: flex;
+    gap: 8px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat span {
+    display: block;
+    font-size: 7px;
+    opacity: .65;
+}
+
+.stat strong {
+    display: block;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   STAGE PROGRESS
+===================================================== */
+
+.stage-progress {
+    flex-shrink: 0;
+    padding: 9px 12px 7px;
+    background: #f4bb43;
+}
+
+.progress-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    margin-bottom: 5px;
+}
+
+#leakText {
+    font-weight: 700;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(0,0,0,.18);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #111;
+    border-radius: inherit;
+    transition: width .3s ease;
+}
+
+.wave-dots {
+    display: flex;
+    gap: 5px;
+    margin-top: 6px;
+}
+
+.wave-dots span {
+    height: 4px;
+    flex: 1;
+    background: rgba(0,0,0,.18);
+    border-radius: 5px;
+}
+
+.wave-dots span.active {
+    background: #111;
+}
+
+
+/* =====================================================
+   WAVE BAR
+===================================================== */
+
+.wave-bar {
+    flex-shrink: 0;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    background: #fff0bd;
+}
+
+.wave-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+#waveLabel {
+    font-size: 10px;
+    font-weight: 900;
+}
+
+#waveStatus {
+    font-size: 8px;
+}
+
+.countdown {
+    min-width: 28px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   MAP
+===================================================== */
+
+.game-map {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    min-height: 260px;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.grass-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("images/grass.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.river {
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    top: 44%;
+    height: 19%;
+    background-image: url("images/river.png");
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+}
+
+.river-branch {
+    display: none;
+}
+
+
+/* =====================================================
+   PLACEMENT SPOTS
+===================================================== */
+
+.placement-spot {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 5;
+    border: 2px dashed rgba(17,17,17,.35);
+    background: rgba(254,204,88,.35);
+    transition: .15s ease;
+}
+
+.placement-spot.water {
+    background: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.7);
+}
+
+.placement-spot.valid {
+    border-color: #111;
+    background: rgba(254,204,88,.8);
+    transform: translate(-50%, -50%) scale(1.12);
+}
+
+.placement-spot.invalid {
+    opacity: .25;
+}
+
+.placement-spot.occupied {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   ENEMIES
+===================================================== */
+
+.enemy {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    transform: translate(-50%, -50%);
+    z-index: 12;
+    pointer-events: none;
+}
+
+.enemy img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.enemy-hp {
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    top: -6px;
+    height: 4px;
+    background: rgba(0,0,0,.45);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.enemy-hp-fill {
+    width: 100%;
+    height: 100%;
+    background: #111;
+}
+
+
+/* =====================================================
+   TOWERS
+===================================================== */
+
+.tower {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    transform: translate(-50%, -50%);
+    z-index: 15;
+    cursor: pointer;
+}
+
+.tower img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+}
+
+.range-circle {
+    position: absolute;
+    width: var(--range);
+    height: var(--range);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(17,17,17,.35);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tower.show-range .range-circle {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   RANGE PREVIEW
+===================================================== */
+
+.range-preview {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px dashed #111;
+    background: rgba(254,204,88,.18);
+    pointer-events: none;
+    z-index: 20;
+}
+
+.range-preview.invalid {
+    opacity: .3;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   DRAG CLONE
+===================================================== */
+
+.drag-clone {
+    position: fixed;
+    width: 54px;
+    height: 54px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.drag-clone img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+/* =====================================================
+   TOWER PANEL
+===================================================== */
+
+.tower-panel {
+    flex-shrink: 0;
+    background: #111;
+    color: #fecc58;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+}
+
+.tower-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3px 7px;
+}
+
+.tower-heading span {
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.tower-heading small {
+    font-size: 7px;
+    opacity: .6;
+}
+
+.tower-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.tower-card {
+    min-width: 0;
+    text-align: center;
+    padding: 5px 2px;
+    border-radius: 8px;
+    background: #222;
+    color: #fecc58;
+    user-select: none;
+    touch-action: none;
+}
+
+.tower-card.dragging {
+    opacity: .4;
+}
+
+.tower-card.disabled {
+    opacity: .3;
+}
+
+.tower-image {
+    width: 100%;
+    height: 43px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tower-image img {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+}
+
+.tower-card strong {
+    display: block;
+    font-size: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tower-card span {
+    display: block;
+    margin-top: 2px;
+    font-size: 6px;
+    opacity: .65;
+}
+
+
+/* =====================================================
+   MESSAGES
+===================================================== */
+
+.game-message {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background: rgba(17,17,17,.65);
+}
+
+.message-box {
+    width: 100%;
+    background: #fecc58;
+    border-radius: 18px;
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.message-box h2 {
+    font-size: 27px;
+    line-height: .95;
+    margin-bottom: 12px;
+}
+
+.message-box p {
+    font-size: 13px;
+    line-height: 1.45;
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   MESSAGES ON MAP
+===================================================== */
+
+.tower-limit-message,
+.tower-info-message {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 80;
+    background: #111;
+    color: #fecc58;
+    border-radius: 12px;
+    padding: 12px 15px;
+    text-align: center;
+    max-width: 85%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+.tower-limit-message.show,
+.tower-info-message.show {
+    opacity: 1;
+}
+
+.tower-info-message {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.tower-info-message strong {
+    font-size: 12px;
+}
+
+.tower-info-message span {
+    font-size: 10px;
+    line-height: 1.35;
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .game-header {
+        grid-template-columns: 38px 1fr auto;
+        padding: 8px;
+    }
+
+    .stats {
+        gap: 5px;
+    }
+
+    .stat strong {
+        font-size: 9px;
+    }
+
+    .tower-list {
+        gap: 3px;
+    }
+
+    .tower-card {
+        padding: 3px 1px;
+    }
+
+    .tower-image {
+        height: 36px;
+    }
+
+    .tower-image img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .tower-card strong {
+        font-size: 6px;
+    }
+
+    .tower-card span {
+        font-size: 5px;
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+   Still mobile-sized, but not a fake phone.
+===================================================== */
+
+@media (min-width: 481px) {
+
+    body {
+        background: #111;
+    }
+
+    .game {
+        min-height: 100vh;
+        max-width: 480px;
+    }
+
+}
